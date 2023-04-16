@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mobik.Common.Utilities.UIFramework.Animations;
 using UnityEngine;
 
 namespace Mobik.Common.Utilities.UIFramework
@@ -10,13 +11,15 @@ namespace Mobik.Common.Utilities.UIFramework
         [SerializeField] protected List<UIView>? _startViews;
         private Dictionary<Type, UIView> _allViews = null!;
 
+        private void Awake() => Initialize();
+
         public TView Visualize<TView, TOptions>(TOptions options) where TView : UIView where TOptions : IOptions
         {
             TView view = GetView<TView>();
             view.Open(options);
             return view;
         }
-        
+
         public TView Hide<TView>() where TView : UIView
         {
             TView view = GetView<TView>();
@@ -33,13 +36,11 @@ namespace Mobik.Common.Utilities.UIFramework
             return view;
         }
 
-        private void Awake() => Initialize();
-
         protected virtual void Initialize()
         {
             gameObject.SetActive(true);
             _allViews = GetViewsDict();
-            _allViews.Values.ToList().ForEach(view => view.Initialize(this));
+            _allViews.Values.ToList().ForEach(view => view.Initialize(this, new AnimatorUI()));
             _startViews?.ForEach(view => view.Open(IOptions.NoneOptions));
         }
 
