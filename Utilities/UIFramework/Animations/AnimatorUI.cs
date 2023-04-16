@@ -7,11 +7,11 @@ namespace Mobik.Common.Utilities.UIFramework.Animations
 {
     internal class AnimatorUI
     {
-        private readonly Dictionary<AnimationTypeUI, AnimationBehaviour> _behaviours;
+        private readonly Dictionary<AnimationTypeUI, IAnimationBehaviour> _behaviours;
 
         public AnimatorUI()
         {
-            _behaviours = new Dictionary<AnimationTypeUI, AnimationBehaviour>
+            _behaviours = new Dictionary<AnimationTypeUI, IAnimationBehaviour>
             {
                 { AnimationTypeUI.SmoothScaling, new SmoothScalingBehaviour() },
                 { AnimationTypeUI.SmoothFading, new SmoothFadingBehaviour() },
