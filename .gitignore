@@ -51,10 +51,14 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-*.meta
+
 
 # Unity3D generated file on crash reports
 sysinfo.txt
+
+# Unity3D custom formats
+*.meta
+*.asmdef
 
 # Builds
 *.apk
