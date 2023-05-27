@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mobik.Common.Utilities.UIFramework
+namespace Mobik.Common.Core
 {
     public class MonoBehaviourCached : MonoBehaviour
     {

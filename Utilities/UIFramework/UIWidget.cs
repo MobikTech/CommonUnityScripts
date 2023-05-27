@@ -1,4 +1,5 @@
 ﻿using System;
+using Mobik.Common.Core;
 using Mobik.Common.Utilities.UIFramework.Animations;
 using UnityEngine;
 
@@ -18,14 +19,15 @@ namespace Mobik.Common.Utilities.UIFramework
         private bool _shouldAnimate;
         private AnimatorUI _animatorUI;
 
-        internal virtual void Initialize(AnimatorUI animatorUI)
+        public abstract void Initialize();
+        internal void Initialize(AnimatorUI animatorUI)
         {
             gameObject.SetActive(false);
             _animatorUI = animatorUI;
             _shouldAnimate = _widgetAnimationOptions.AnimationType != AnimationTypeUI.None;
+            Initialize();
         }
-
-        internal virtual void Visualize<TOptions>(TOptions options) where TOptions : IOptions
+        internal void Visualize<TOptions>(TOptions options) where TOptions : IOptions
         {
             gameObject.SetActive(true);
             IsActive = true;
@@ -36,8 +38,7 @@ namespace Mobik.Common.Utilities.UIFramework
             _animatorUI.AnimateVisualizing(transform, _widgetAnimationOptions.AnimationType, 
                 _widgetAnimationOptions.VisualizingTime, () => VisualizingFinished?.Invoke());
         }
-
-        internal virtual void Hide()
+        internal void Hide()
         {
             IsActive = false;
 

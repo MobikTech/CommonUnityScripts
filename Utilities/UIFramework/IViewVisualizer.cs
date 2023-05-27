@@ -1,4 +1,5 @@
-﻿
+﻿using Mobik.Common.Core;
+
 namespace Mobik.Common.Utilities.UIFramework
 {
     public interface IViewVisualizer

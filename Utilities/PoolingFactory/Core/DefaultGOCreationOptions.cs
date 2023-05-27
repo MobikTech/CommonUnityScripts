@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Mobik.Common.Utilities.PoolingFactory.Core
 {
-    public struct DefaultCreationOptions<TItem> : ICreationOptions<TItem> where TItem : MonoBehaviour
+    public struct DefaultGOCreationOptions<TItem> : ICreationOptions<TItem> where TItem : MonoBehaviour, IPoolItem
     {
         public TItem Prefab { get; }
         public Vector3 SpawnPoint;
         public Quaternion Rotation;
         public Transform Parent;
 
-        public DefaultCreationOptions(TItem prefab, Vector3 spawnPoint, Quaternion rotation, Transform parent)
+        public DefaultGOCreationOptions(TItem prefab, Vector3 spawnPoint, Quaternion rotation, Transform parent)
         {
             Prefab = prefab;
             SpawnPoint = spawnPoint;

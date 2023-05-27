@@ -1,4 +1,4 @@
-﻿namespace Mobik.Common.Utilities.UIFramework
+﻿namespace Mobik.Common.Core
 {
     public interface IOptions
     {
