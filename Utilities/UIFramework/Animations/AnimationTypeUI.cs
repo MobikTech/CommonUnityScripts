@@ -1,6 +1,6 @@
 ﻿namespace Mobik.Common.Utilities.UIFramework.Animations
 {
-    internal enum AnimationTypeUI
+    public enum AnimationTypeUI
     {
         None,
         SmoothScaling,

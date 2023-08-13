@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Mobik.Common.Utilities.UIFramework.Animations
 {
-    internal class AnimatorUI
+    public class AnimatorUI
     {
         private readonly Dictionary<AnimationTypeUI, IAnimationBehaviour> _behaviours;
 
