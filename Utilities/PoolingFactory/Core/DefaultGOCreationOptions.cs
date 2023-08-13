@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Mobik.Common.Utilities.PoolingFactory.Core
 {
-    public struct DefaultCreationOptions<TItem> : ICreationOptions<TItem> where TItem : MonoBehaviour
+    public readonly struct DefaultCreationOptions<TItem> : ICreationOptions<TItem> where TItem : MonoBehaviour
     {
         public TItem Prefab { get; }
-        public Vector3 SpawnPoint;
-        public Quaternion Rotation;
-        public Transform Parent;
+        private readonly Vector3 _spawnPoint;
+        private readonly Quaternion _rotation;
+        private readonly Transform _parent;
 
         public DefaultCreationOptions(TItem prefab, Vector3 spawnPoint, Quaternion rotation, Transform parent)
         {
             Prefab = prefab;
-            SpawnPoint = spawnPoint;
-            Rotation = rotation;
-            Parent = parent;
+            _spawnPoint = spawnPoint;
+            _rotation = rotation;
+            _parent = parent;
         }
 
         public void SetupCreationOptions(TItem item)
         {
-            item.transform.position = SpawnPoint;
-            item.transform.rotation = Rotation;
-            item.transform.parent = Parent;
+            item.transform.position = _spawnPoint;
+            item.transform.rotation = _rotation;
+            item.transform.parent = _parent;
         }
     }
 }

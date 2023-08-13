@@ -18,14 +18,14 @@ namespace Mobik.Common.Utilities.UIFramework
         private bool _shouldAnimate;
         private AnimatorUI _animatorUI;
 
-        internal virtual void Initialize(AnimatorUI animatorUI)
+        public virtual void Initialize(AnimatorUI animatorUI)
         {
             gameObject.SetActive(false);
             _animatorUI = animatorUI;
             _shouldAnimate = _widgetAnimationOptions.AnimationType != AnimationTypeUI.None;
         }
 
-        internal virtual void Visualize<TOptions>(TOptions options) where TOptions : IOptions
+        public virtual void Visualize<TOptions>(TOptions options) where TOptions : IOptions
         {
             gameObject.SetActive(true);
             IsActive = true;
@@ -37,7 +37,7 @@ namespace Mobik.Common.Utilities.UIFramework
                 _widgetAnimationOptions.VisualizingTime, () => VisualizingFinished?.Invoke());
         }
 
-        internal virtual void Hide()
+        public virtual void Hide()
         {
             IsActive = false;
 
@@ -51,7 +51,6 @@ namespace Mobik.Common.Utilities.UIFramework
                         HidingFinished?.Invoke();
                     });
             }
-
             else
             {
                 gameObject.SetActive(false);

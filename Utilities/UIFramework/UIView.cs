@@ -24,10 +24,11 @@ namespace Mobik.Common.Utilities.UIFramework
             _childWidgets.ForEach(widget => widget.Initialize(animatorUI));
             gameObject.SetActive(false);
         }
+        
         public virtual void Open<TOptions>(TOptions options) where TOptions : IOptions
         {
             gameObject.SetActive(true);
-            _startWidgets?.ForEach(widget => widget.Visualize(IOptions.NoneOptions));
+            _startWidgets?.ForEach(widget => widget.Visualize(options));
             HasOpened?.Invoke();
         }
 
