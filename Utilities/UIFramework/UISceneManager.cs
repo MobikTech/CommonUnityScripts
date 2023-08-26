@@ -11,6 +11,7 @@ namespace Mobik.Common.Utilities.UIFramework
     {
         [SerializeField] protected List<UIView>? _startViews;
         private Dictionary<Type, UIView> _allViews = null!;
+        private bool _isInitialized = false;
 
         private void Awake() => Initialize();
 
@@ -43,6 +44,16 @@ namespace Mobik.Common.Utilities.UIFramework
             _allViews = GetViewsDict();
             _allViews.Values.ToList().ForEach(view => view.Initialize(this, new AnimatorUI()));
             _startViews?.ForEach(view => view.Open(IOptions.NoneOptions));
+            _isInitialized = true;
+        }
+
+        private void OnDestroy()
+        {
+            if (!_isInitialized)
+            {
+                return;
+            }
+            _allViews.Values.ToList().ForEach(view => view.Dispose());
         }
 
         private Dictionary<Type, UIView> GetViewsDict()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Mobik.Common.Utilities.UIFramework
 {
-    public abstract class UIWidget : MonoBehaviourCached
+    public abstract class UIWidget : MonoBehaviourCached, IDisposable
     {
         public event Action? VisualizingStarted;
         public event Action? VisualizingFinished;
@@ -19,15 +19,19 @@ namespace Mobik.Common.Utilities.UIFramework
         private bool _shouldAnimate;
         private AnimatorUI _animatorUI;
 
-        public abstract void Initialize();
         internal void Initialize(AnimatorUI animatorUI)
         {
             gameObject.SetActive(false);
             _animatorUI = animatorUI;
             _shouldAnimate = _widgetAnimationOptions.AnimationType != AnimationTypeUI.None;
-            Initialize();
         }
-        internal void Visualize<TOptions>(TOptions options) where TOptions : IOptions
+
+        protected virtual void Initialize()
+        {
+            
+        } 
+        
+        public virtual void Visualize<TOptions>(TOptions options) where TOptions : IOptions
         {
             gameObject.SetActive(true);
             IsActive = true;
@@ -38,7 +42,7 @@ namespace Mobik.Common.Utilities.UIFramework
             _animatorUI.AnimateVisualizing(transform, _widgetAnimationOptions.AnimationType, 
                 _widgetAnimationOptions.VisualizingTime, () => VisualizingFinished?.Invoke());
         }
-        internal void Hide()
+        public virtual void Hide()
         {
             IsActive = false;
 
@@ -57,6 +61,10 @@ namespace Mobik.Common.Utilities.UIFramework
             {
                 gameObject.SetActive(false);
             }
+        }
+        public virtual void Dispose()
+        {
+            
         }
     }
 }

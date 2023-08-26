@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Mobik.Common.Utilities.UIFramework
 {
-    public abstract class UIView : MonoBehaviourCached
+    public abstract class UIView : MonoBehaviourCached, IDisposable
     {
         public event Action? HasOpened;
         public event Action? HasClosed;
@@ -17,7 +17,6 @@ namespace Mobik.Common.Utilities.UIFramework
         private List<UIWidget>? _childWidgets;
         protected IViewVisualizer _viewVisualizer = null!;
 
-        public abstract void Initialize();
         internal void Initialize(IViewVisualizer viewVisualizer, AnimatorUI animatorUI)
         {
             _viewVisualizer = viewVisualizer;
@@ -27,13 +26,19 @@ namespace Mobik.Common.Utilities.UIFramework
             Initialize();
         }
 
-        public void Open<TOptions>(TOptions options) where TOptions : IOptions
+        public virtual void Initialize()
+        {
+            
+        }
+
+        public virtual void Open<TOptions>(TOptions options) where TOptions : IOptions
         {
             gameObject.SetActive(true);
-            _startWidgets?.ForEach(widget => widget.Visualize(IOptions.NoneOptions));
+            _startWidgets?.ForEach(widget => widget.Visualize(options));
             HasOpened?.Invoke();
         }
-        public void Close()
+        
+        public virtual void Close()
         {
             _childWidgets?
                 .Where(widget => widget.IsActive)
@@ -41,6 +46,11 @@ namespace Mobik.Common.Utilities.UIFramework
                 .ForEach(widget => widget.Hide());
             gameObject.SetActive(false);
             HasClosed?.Invoke();
+        }
+
+        public virtual void Dispose()
+        {
+            _childWidgets.ForEach(widget => widget.Dispose());
         }
     }
 }
