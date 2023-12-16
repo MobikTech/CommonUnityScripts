@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Mobik.Common.Utilities.Logging
 {
-    public class ExternalFileLogger : ILogger, IDisposable, IAsyncDisposable
+    public class ExternalFileLogger : ILogger, IDisposable
     {
         public ExternalFileLogger(string fileName, string fileType, bool isEnabled = true)
         {
@@ -58,14 +57,6 @@ namespace Mobik.Common.Utilities.Logging
         public void Dispose()
         {
             _streamWriter?.Dispose();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            if (_streamWriter != null)
-            {
-                await _streamWriter.DisposeAsync();
-            }
         }
 
 
