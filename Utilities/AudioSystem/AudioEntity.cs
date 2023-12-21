@@ -32,7 +32,7 @@ namespace Mobik.Common.Utilities.AudioSystem
         internal async Task Play()
         {
             _audioSource.Play();
-            while (_audioSource != null && _audioSource.isPlaying && _audioSource.gameObject.activeSelf)
+            while (CheckAudioIsPlaying())
             {
                 if (_isSpatial)
                 {
@@ -45,6 +45,12 @@ namespace Mobik.Common.Utilities.AudioSystem
         internal void StopPlaying()
         {
             _audioSource.Stop();
+        }
+
+        private bool CheckAudioIsPlaying()
+        {
+            return _audioSource != null && _audioSource.isPlaying && _audioSource.gameObject.activeSelf &&
+                   (!_isSpatial || (_isSpatial && _soundSourceTransform != null));
         }
     }
 }
