@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mobik.Common.Utilities.SoundSystem
+namespace Mobik.Common.Utilities.AudioSystem
 {
     public struct SpatialAudioParameters
     {

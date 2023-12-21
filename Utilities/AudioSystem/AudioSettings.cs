@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Mobik.Common.Utilities.SoundSystem
+namespace Mobik.Common.Utilities.AudioSystem
 {
     [CreateAssetMenu(fileName = "AudioSettings", menuName = "AudioSettings", order = 0)]
     public class AudioSettings : ScriptableObject

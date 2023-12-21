@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Mobik.Common.Utilities.SoundSystem
+namespace Mobik.Common.Utilities.AudioSystem
 {
     internal class AudioEntity
     {

@@ -1,4 +1,4 @@
-﻿namespace Mobik.Common.Utilities.SoundSystem
+﻿namespace Mobik.Common.Utilities.AudioSystem
 {
     public interface IAudioSystem
     {

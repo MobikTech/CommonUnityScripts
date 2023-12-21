@@ -5,7 +5,7 @@ using UnityEngine;
 using ILogger = Mobik.Common.Utilities.Logging.ILogger;
 using Object = UnityEngine.Object;
 
-namespace Mobik.Common.Utilities.SoundSystem
+namespace Mobik.Common.Utilities.AudioSystem
 {
     public class AudioSystem : IAudioSystem
     {
