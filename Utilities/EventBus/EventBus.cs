@@ -35,7 +35,7 @@ namespace Mobik.Common.Utilities.EventBus
             Type eventType = typeof(TEvent);
             if (!_subscribers.ContainsKey(eventType))
             {
-                throw new MissingMemberException("Cannot raise event that was not subscribed");
+                _subscribers.Add(eventType, new List<IEventReceiver>());
             }
             
             foreach (var eventReceiver in _subscribers[eventType].ToList())
