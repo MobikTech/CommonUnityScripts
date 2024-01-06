@@ -35,8 +35,14 @@ namespace Mobik.Common.Utilities.PoolingFactory.Core
                 : _poolOfItems[creationOptions.Prefab.GetItemTypeKey].Pop();
 
             creationOptions.SetupCreationOptions(unit);
+            OnCreationFinished(unit);
             unit.gameObject.SetActive(true);
             return unit;
+        }
+
+        protected virtual void OnCreationFinished(TItemBase item)
+        {
+            
         }
     }
 }
